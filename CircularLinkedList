@@ -1,0 +1,39 @@
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+    
+}
+
+class CircularSingnlyLinkedList {
+    constructor() {
+        this.last = null;
+        this.prev = null;
+        this.length = 0;
+    }
+
+    add(data) {
+        let newNode = new Node(data);
+
+        if(this.last === null) {
+            this.last = newNode;
+            this.prev = newNode;
+            this.length++;
+        }
+    }
+
+    printAll() {
+        let i = 0, currentNode = this.last;
+        while(currentNode !== null) {
+            console.log(currentNode.data);
+            currentNode = currentNode.next;
+        }
+    }  
+    
+}
+
+const cll = new CircularSingnlyLinkedList();
+cll.add("Node 1");
+cll.printAll();
