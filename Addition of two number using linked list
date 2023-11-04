@@ -1,0 +1,65 @@
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class SinglyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    add(data) {
+        let newNode = new Node(data);
+        if(this.head === null) {
+            this.head = newNode;
+            this.tail = newNode;
+        }else{
+            let currentNode = this.head;
+
+            while(currentNode.next !== null) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = newNode;
+            this.tail = newNode;
+        }
+    }
+
+    printAll() {
+        let currentNode = this.head;
+        while(currentNode !== null) {
+            console.log(currentNode.data);  
+            currentNode = currentNode.next;
+        }
+    }
+
+    sumList(l1, l2) {
+        let l1Node = l1.head;
+        let l2Node = l2.head;
+        let carry = 0;
+        while(l1Node || l2Node) {
+            let addition = (l1Node?.data || 0) + (l2Node?.data || 0) + carry;
+            l1Node = l1Node.next;
+            l2Node = l2Node.next;
+
+            this.add(addition % 10);
+            carry = Math.floor(addition / 10);
+        }
+    }
+}
+
+const list1 = new SinglyLinkedList();
+list1.add(2);
+list1.add(4);
+list1.add(3);
+
+const list2 = new SinglyLinkedList();
+list2.add(5);
+list2.add(6);
+list2.add(4);
+
+const result = new SinglyLinkedList();
+result.sumList(list1, list2);
+result.printAll();
