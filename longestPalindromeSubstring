@@ -1,0 +1,35 @@
+function longestPalindromeString(s) {
+
+    let res = "";
+    let maxLength = 0;
+    let left, right = 0
+
+    for(let i=0; i< s.length; i++ ) {
+        left = right = i;
+
+        while(left >= 0 && right < s.length && s[left] === s[right]) {
+            if(maxLength < right - left + 1) {
+                res = s.substring(left, right+1);
+                maxLength = right - left +1;
+            }
+            left--;
+            right++;
+        }
+        
+        left = right = i;
+        right++;
+
+        while(left >= 0 && right < s.length && s[left] === s[right]) {
+            if(maxLength < right - left + 1) {
+                res = s.substring(left, right+1);
+                maxLength = right - left +1;
+            }
+            left--;
+            right++;
+        }
+        
+    }
+    console.log("Res ",res);
+}
+
+longestPalindromeString("babasd");
