@@ -1,0 +1,13 @@
+function addTwoSum(array, target) {
+
+    const targetEle = new Map();
+    array.map((ele,index) => {
+        let diff = target - ele;
+
+        if(targetEle.has(diff)) {
+            console.log([targetEle.get(diff), index]) 
+        }
+            targetEle.set(ele, index);
+    })
+}
+addTwoSum([2,5,7,1,3,4], 10)
