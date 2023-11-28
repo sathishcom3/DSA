@@ -1,0 +1,52 @@
+
+/**
+* @param {string} s
+* @return {number}
+*/
+
+var lengthOfLongestSubstring = function (s) {
+
+    let substr = s[0];
+    if(!substr) {
+        return 0;
+    }
+
+    let longestSubstring = substr;
+
+    let j = 0;
+
+    for(let i = j+1; i < s.length; i++) {
+
+        if(s.slice(j, i).split("").includes(s[i])){
+            j = j+1;
+            i = j;
+        }else {
+           substr = s.slice(j, i+1)
+        }
+
+      if(longestSubstring.length < substr.length) {
+            longestSubstring = substr;
+        }
+    }
+
+    return longestSubstring.length;
+
+};
+
+
+1  first char is sub string
+2  check length if === 0 then no sub string and terminate execution
+3  declare longestSubString variable and that one char sub string
+4  decalre j = 0 to calculate range
+5  iterate loop ('for' probabaly) and i = j+1
+6  slice the str between j(sart) to i (end), convert to array, and last char of substring is exist
+
+                             if yes then chage j and i since these are the index
+                             j should increase by 1
+                             else
+                             cut that sub str and assign it to substr.
+
+ 
+                             check if substr > longestSubString
+                             yes --> assign substr to longestSubString
+                             else -> nothing to do
